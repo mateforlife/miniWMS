@@ -1,0 +1,57 @@
+<%= form_with(model: scheduling, local: true) do |form| %>
+  <% if scheduling.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scheduling.errors.count, "error") %> prohibited this scheduling from being saved:</h2>
+
+      <ul>
+      <% scheduling.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "Usuario" %>
+    <%= form.collection_select(:user_id, User.all, :id, :email)%>
+  </div>
+
+  <div class="field">
+    <%= form.label "Cliente" %>
+    <%= form.collection_select(:client_id, Client.all, :id, :name)%>
+  </div>
+
+  <div class="field">
+    <%= form.label "Tipo de Operación" %>
+    <%= form.collection_select(:operation_id, Operation.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Referencia/Observación" %>
+    <%= form.text_field :observation %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Cantidad de Pallets" %>
+    <%= form.number_field :pallets_qty %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Fecha de operación" %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Andén" %>
+    <%= form.collection_select(:door_id, Door.all, :id, :number) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Agendar" %>
+  </div>
+<% end %>

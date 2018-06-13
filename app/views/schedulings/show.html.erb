@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @scheduling.user.email %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @scheduling.client.name %>
+</p>
+
+<p>
+  <strong>Operation:</strong>
+  <%= @scheduling.operation.name %>
+</p>
+
+<p>
+  <strong>Observation:</strong>
+  <%= @scheduling.observation %>
+</p>
+
+<p>
+  <strong>Pallets qty:</strong>
+  <%= @scheduling.pallets_qty %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @scheduling.date %>
+</p>
+
+<p>
+  <strong>Door:</strong>
+  <%= @scheduling.door.number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @scheduling.status %>
+</p>
+
+<%= link_to 'Edit', edit_scheduling_path(@scheduling) %> |
+<%= link_to 'Back', schedulings_path %>

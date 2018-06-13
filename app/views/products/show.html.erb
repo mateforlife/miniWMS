@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @product.code %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Client code:</strong>
+  <%= @product.client_code %>
+</p>
+
+<p>
+  <strong>Innerpack:</strong>
+  <%= @product.innerpack %>
+</p>
+
+<p>
+  <strong>Ean13:</strong>
+  <%= @product.ean13 %>
+</p>
+
+<p>
+  <strong>Dun14:</strong>
+  <%= @product.dun14 %>
+</p>
+
+<p>
+  <strong>Aux code:</strong>
+  <%= @product.aux_code %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @product.location %>
+</p>
+
+<!--<%= link_to 'Edit', edit_product_path(@product) %>-->
+<%= link_to 'Back', products_path %>

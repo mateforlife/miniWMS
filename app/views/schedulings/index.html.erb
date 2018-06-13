@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Agendamientos CD</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Cliente</th>
+      <th>Operacion</th>
+      <th>Obs/Ref</th>
+      <th>Pallets</th>
+      <th>Fecha</th>
+      <th>Andén</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedulings.each do |scheduling| %>
+      <tr>
+        <td><%= scheduling.user.email %></td>
+        <td><%= scheduling.client.name %></td>
+        <td><%= scheduling.operation.name %></td>
+        <td><%= scheduling.observation %></td>
+        <td><%= scheduling.pallets_qty %></td>
+        <td><%= scheduling.date %></td>
+        <td><%= scheduling.door.number %></td>
+        <td><%= scheduling.status %></td>
+        <td><%= link_to 'Editar', edit_scheduling_path(scheduling) %></td>
+        <td><%= link_to 'Eliminar', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Agendamiento', new_scheduling_path %>

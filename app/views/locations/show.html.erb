@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pasillo:</strong>
+  <%= @location.passage.name %>
+</p>
+
+<p>
+  <strong>Slot:</strong>
+  <%= @location.slot.number %>
+</p>
+
+<p>
+  <strong>Nivel:</strong>
+  <%= @location.level.number %>
+</p>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>
