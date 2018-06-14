@@ -4,7 +4,8 @@ class SchedulingsController < ApplicationController
   # GET /schedulings
   # GET /schedulings.json
   def index
-    @schedulings = Scheduling.all
+    @day = selected_date(:day)
+    @schedulings = params[:search].present? ? Scheduling.where("date BETWEEN ? AND ? ", @day.beginning_of_day, @day.end_of_day ).order("date ASC") : Scheduling.where("date BETWEEN ? AND ?", Time.now.beginning_of_day, Time.now.end_of_day )
   end
 
   # GET /schedulings/1
@@ -62,6 +63,10 @@ class SchedulingsController < ApplicationController
   end
 
   private
+
+    def selected_date(symbol)
+      params[:search].present? && params[:search][symbol].present? ? params[:search][symbol].to_date : Time.now.to_date
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_scheduling
       @scheduling = Scheduling.find(params[:id])
