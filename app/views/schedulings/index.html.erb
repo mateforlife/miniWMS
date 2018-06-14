@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<%= form_for :search, method: :get do |f| -%>
+
+    <%= f.date_field :day, value: @start -%>
+    <%= f.submit 'Search' -%>
+
+<% end -%>
+
 <h1>Agendamientos CD</h1>
 
 <table>
@@ -10,7 +17,7 @@
       <th>Operacion</th>
       <th>Obs/Ref</th>
       <th>Pallets</th>
-      <th>Fecha</th>
+      <th>Horario</th>
       <th>Andén</th>
       <th>Status</th>
       <th colspan="3"></th>
@@ -25,7 +32,7 @@
         <td><%= scheduling.operation.name %></td>
         <td><%= scheduling.observation %></td>
         <td><%= scheduling.pallets_qty %></td>
-        <td><%= scheduling.date %></td>
+        <td><%= scheduling.date.strftime('%H:%M') %></td>
         <td><%= scheduling.door.number %></td>
         <td><%= scheduling.status %></td>
         <td><%= link_to 'Editar', edit_scheduling_path(scheduling) %></td>
