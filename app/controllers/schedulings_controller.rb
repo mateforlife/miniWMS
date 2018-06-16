@@ -16,6 +16,7 @@ class SchedulingsController < ApplicationController
   # GET /schedulings/new
   def new
     @scheduling = Scheduling.new
+    #@scheduling.status = 0
   end
 
   # GET /schedulings/1/edit
@@ -70,6 +71,7 @@ class SchedulingsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_scheduling
       @scheduling = Scheduling.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

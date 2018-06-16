@@ -4,6 +4,6 @@ class Scheduling < ApplicationRecord
   belongs_to :operation
   belongs_to :door
 
-  enum status: [:pending, :aproved, :canceled]
+  enum status: [:pending, :approved, :canceled]
 
 end
