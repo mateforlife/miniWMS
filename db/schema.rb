@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_13_232625) do
+ActiveRecord::Schema.define(version: 2018_06_15_194537) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_232625) do
     t.integer "level_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "available"
     t.index ["level_id"], name: "index_locations_on_level_id"
     t.index ["passage_id"], name: "index_locations_on_passage_id"
     t.index ["slot_id"], name: "index_locations_on_slot_id"
@@ -77,7 +78,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_232625) do
     t.integer "door_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.index ["client_id"], name: "index_schedulings_on_client_id"
     t.index ["door_id"], name: "index_schedulings_on_door_id"
     t.index ["operation_id"], name: "index_schedulings_on_operation_id"
