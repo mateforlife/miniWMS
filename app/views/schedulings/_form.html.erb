@@ -44,12 +44,7 @@
   <div class="field">
     <%= form.label "Andén" %>
     <%= form.collection_select(:door_id, Door.all, :id, :number) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status%>
-  </div>
+  </div> 
 
   <div class="actions">
     <%= form.submit "Agendar" %>

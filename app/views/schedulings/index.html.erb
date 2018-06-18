@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= form_for :search, method: :get do |f| -%>
-
-    <%= f.date_field :day, value: @start -%>
-    <%= f.submit 'Search' -%>
-
-<% end -%>
+<!--Calendar_seach-->
+<%= form_for :search, method: :get do |f| %>
+  <%= f.date_field :day, value: @start %>
+  <%= f.submit 'Search' %>
+<% end %>
+<!---->
 
 <h1>Agendamientos CD</h1>
 
@@ -35,6 +35,7 @@
         <td><%= scheduling.date.strftime('%H:%M') %></td>
         <td><%= scheduling.door.number %></td>
         <td><%= scheduling.status %></td>
+        <td><%= link_to "Iniciar #{scheduling.operation.name}", edit_scheduling_path(scheduling) %></td>
         <td><%= link_to 'Editar', edit_scheduling_path(scheduling) %></td>
         <td><%= link_to 'Eliminar', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

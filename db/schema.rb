@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_16_171841) do
+ActiveRecord::Schema.define(version: 2018_06_18_035747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2018_06_16_171841) do
     t.bigint "door_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.index ["client_id"], name: "index_schedulings_on_client_id"
     t.index ["door_id"], name: "index_schedulings_on_door_id"
     t.index ["operation_id"], name: "index_schedulings_on_operation_id"
