@@ -22,12 +22,12 @@
   </div>
 
   <div class="field">
-    <%= form.label "Tipo de OperaciÃ³n" %>
+    <%= form.label "Tipo de Operación" %>
     <%= form.collection_select(:operation_id, Operation.all, :id, :name) %>
   </div>
 
   <div class="field">
-    <%= form.label "Referencia/ObservaciÃ³n" %>
+    <%= form.label "Referencia/Observación" %>
     <%= form.text_field :observation %>
   </div>
 
@@ -37,14 +37,11 @@
   </div>
 
   <div class="field">
-    <%= form.label "Fecha de operaciÃ³n" %>
+    <%= form.label "Fecha de operación" %>
     <%= form.datetime_select :date %>
   </div>
 
-  <div class="field">
-    <%= form.label "AndÃ©n" %>
-    <%= form.collection_select(:door_id, Door.all, :id, :number) %>
-  </div> 
+
 
   <div class="actions">
     <%= form.submit "Agendar" %>
