@@ -4,6 +4,7 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.references :passage, foreign_key: true
       t.references :slot, foreign_key: true
       t.references :level, foreign_key: true
+      t.boolean :available
 
       t.timestamps
     end

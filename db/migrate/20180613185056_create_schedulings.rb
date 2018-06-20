@@ -8,7 +8,7 @@ class CreateSchedulings < ActiveRecord::Migration[5.2]
       t.integer :pallets_qty
       t.datetime :date
       t.references :door, foreign_key: true
-      t.string :status
+      t.integer :status
 
       t.timestamps
     end

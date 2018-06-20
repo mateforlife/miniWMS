@@ -35,10 +35,12 @@
   <%= @product.aux_code %>
 </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @product.location %>
-</p>
+<div class="field">
+  <strong>Ubicaciones asignadas:</strong>
+  <% @product_locations.each do |location| %>
+    <p><%= location.location.location_full_name %></p>
+  <% end %>  
+</div>
 
 <!--<%= link_to 'Edit', edit_product_path(@product) %>-->
 <%= link_to 'Back', products_path %>

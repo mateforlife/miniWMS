@@ -15,5 +15,10 @@
   <%= @location.level.number %>
 </p>
 
+<p>
+  <strong>Disponible:</strong>
+  <%= @location.available %>
+</p>
+
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

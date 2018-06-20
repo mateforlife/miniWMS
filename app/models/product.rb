@@ -1,3 +1,7 @@
 class Product < ApplicationRecord
-  belongs_to :location
+  has_many :locations
+
+  def code_description
+    "#{code} - #{description}"
+  end  
 end

@@ -3,12 +3,10 @@
 <!--Calendar_seach-->
 <%= form_for :search, method: :get do |f| %>
   <%= f.date_field :day, value: @start %>
-  <%= f.submit 'Search' %>
+  <%= f.submit 'Search' %> 
+  <h2> <%= "Mostrando agendamientos para: #{@day.strftime("%d/%m/%Y")}" %> </h2>
 <% end %>
 <!---->
-
-
-<h1>Agendamientos CD</h1>
 
 <table>
   <thead>

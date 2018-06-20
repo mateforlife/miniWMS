@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_035747) do
+ActiveRecord::Schema.define(version: 2018_06_20_021604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_06_18_035747) do
     t.bigint "level_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "available"
+    t.boolean "available", default: true
     t.index ["level_id"], name: "index_locations_on_level_id"
     t.index ["passage_id"], name: "index_locations_on_passage_id"
     t.index ["slot_id"], name: "index_locations_on_slot_id"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2018_06_18_035747) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "product_locations", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_product_locations_on_location_id"
+    t.index ["product_id"], name: "index_product_locations_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "code"
     t.string "description"
@@ -65,10 +74,8 @@ ActiveRecord::Schema.define(version: 2018_06_18_035747) do
     t.string "ean13"
     t.string "dun14"
     t.string "aux_code"
-    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_products_on_location_id"
   end
 
   create_table "schedulings", force: :cascade do |t|
@@ -114,7 +121,8 @@ ActiveRecord::Schema.define(version: 2018_06_18_035747) do
   add_foreign_key "locations", "levels"
   add_foreign_key "locations", "passages"
   add_foreign_key "locations", "slots"
-  add_foreign_key "products", "locations"
+  add_foreign_key "product_locations", "locations"
+  add_foreign_key "product_locations", "products"
   add_foreign_key "schedulings", "clients"
   add_foreign_key "schedulings", "doors"
   add_foreign_key "schedulings", "operations"
