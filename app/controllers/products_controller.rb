@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_product_locations, only: [:show]
+  before_action :set_product, only: %i[show edit update destroy]
 
   # GET /products
   # GET /products.json
@@ -33,7 +32,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -63,17 +62,15 @@ class ProductsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
-    def set_product_locations
-      @product_locations = ProductLocation.where(product_id: @product.id)
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:code, :description, :client_code, :innerpack, :ean13, :dun14, :aux_code)
+      params.require(:product).permit(:code, :description, :client_code,
+                                      :innerpack, :ean13, :dun14, :aux_code)
     end
 end

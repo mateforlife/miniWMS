@@ -26,6 +26,12 @@
     <%= form.collection_select(:level_id, Level.all, :id, :number) %>
   </div>
 
+
+  <div class="field">
+    <%= form.label "Slot para:"%>
+    <%= form.collection_select(:product_id, Product.all, :id, :code_description) %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Crear Ubicación" %>
   </div>

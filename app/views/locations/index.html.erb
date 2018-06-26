@@ -9,6 +9,7 @@
       <th>Slot</th>
       <th>Nivel</th>
       <th>Disponible</th>
+      <th>Slot para:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,8 +21,13 @@
         <td><%= location.slot.number %></td>
         <td><%= location.level.number %></td>
         <td><%= location.available %></td>
+        <% unless location.product.nil? %>
+          <td><%= location.product.code_description %></td>
+        <% else %>  
+          <td><%= "0" %></td>
+        <% end %>  
         <!--<td><%= link_to 'Show', location %></td>-->
-        <!--<td><%= link_to 'Edit', edit_location_path(location) %></td>-->
+        <td><%= link_to 'Edit', edit_location_path(location) %></td>
         <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

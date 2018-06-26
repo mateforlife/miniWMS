@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_021604) do
+ActiveRecord::Schema.define(version: 2018_06_26_162757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(version: 2018_06_20_021604) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
+    t.bigint "product_id"
     t.index ["level_id"], name: "index_locations_on_level_id"
     t.index ["passage_id"], name: "index_locations_on_passage_id"
+    t.index ["product_id"], name: "index_locations_on_product_id"
     t.index ["slot_id"], name: "index_locations_on_slot_id"
   end
 
@@ -51,19 +53,28 @@ ActiveRecord::Schema.define(version: 2018_06_20_021604) do
     t.string "name"
   end
 
+  create_table "pallets", force: :cascade do |t|
+    t.bigint "reception_id"
+    t.string "pallet_number"
+    t.bigint "location_id"
+    t.integer "origin_qty"
+    t.integer "reserved_qty"
+    t.integer "available_qty"
+    t.date "exp_date"
+    t.string "batch"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
+    t.index ["location_id"], name: "index_pallets_on_location_id"
+    t.index ["product_id"], name: "index_pallets_on_product_id"
+    t.index ["reception_id"], name: "index_pallets_on_reception_id"
+  end
+
   create_table "passages", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "product_locations", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_product_locations_on_location_id"
-    t.index ["product_id"], name: "index_product_locations_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -76,6 +87,20 @@ ActiveRecord::Schema.define(version: 2018_06_20_021604) do
     t.string "aux_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "receptions", force: :cascade do |t|
+    t.bigint "scheduling_id"
+    t.string "document_number"
+    t.string "origin_place"
+    t.string "vehicle_patent"
+    t.string "reference_text"
+    t.text "comment"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["scheduling_id"], name: "index_receptions_on_scheduling_id"
+    t.index ["user_id"], name: "index_receptions_on_user_id"
   end
 
   create_table "schedulings", force: :cascade do |t|
@@ -120,9 +145,13 @@ ActiveRecord::Schema.define(version: 2018_06_20_021604) do
 
   add_foreign_key "locations", "levels"
   add_foreign_key "locations", "passages"
+  add_foreign_key "locations", "products"
   add_foreign_key "locations", "slots"
-  add_foreign_key "product_locations", "locations"
-  add_foreign_key "product_locations", "products"
+  add_foreign_key "pallets", "locations"
+  add_foreign_key "pallets", "products"
+  add_foreign_key "pallets", "receptions"
+  add_foreign_key "receptions", "schedulings"
+  add_foreign_key "receptions", "users"
   add_foreign_key "schedulings", "clients"
   add_foreign_key "schedulings", "doors"
   add_foreign_key "schedulings", "operations"

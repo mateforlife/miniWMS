@@ -37,8 +37,8 @@
 
 <div class="field">
   <strong>Ubicaciones asignadas:</strong>
-  <% @product_locations.each do |location| %>
-    <p><%= location.location.location_full_name %></p>
+  <% @product.locations.each do |location| %>
+    <p><%= location.location_full_name %></p>
   <% end %>  
 </div>
 

@@ -12,16 +12,16 @@
   <body>
     <% if user_signed_in? %>
       <%= link_to 'Agendamiento CD', schedulings_path %>
+      <%= link_to 'Recepciones', receptions_path %>
       <%= link_to 'Productos', products_path %>
-      <%= link_to 'Slot de Productos', product_locations_path %>
       <%= link_to 'Ubicaciones', locations_path %>
       <%= link_to 'Andenes', doors_path %>
       <%= link_to 'Clientes', clients_path %>
       <%= link_to 'Operaciones', operations_path %>
       <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>  
     <% else %>
-      <%= link_to 'Iniciar sesión', new_user_session_path %>  
-    <% end %>  
+      <%= link_to 'Iniciar sesión', new_user_session_path %>
+    <% end %>
   </body>
   <body>
     <%= yield %>

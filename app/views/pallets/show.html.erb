@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reception:</strong>
+  <%= @pallet.reception %>
+</p>
+
+<p>
+  <strong>Pallet number:</strong>
+  <%= @pallet.pallet_number %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @pallet.location %>
+</p>
+
+<p>
+  <strong>Origin qty:</strong>
+  <%= @pallet.origin_qty %>
+</p>
+
+<p>
+  <strong>Reserved qty:</strong>
+  <%= @pallet.reserved_qty %>
+</p>
+
+<p>
+  <strong>Available qty:</strong>
+  <%= @pallet.available_qty %>
+</p>
+
+<p>
+  <strong>Exp date:</strong>
+  <%= @pallet.exp_date %>
+</p>
+
+<p>
+  <strong>Batch:</strong>
+  <%= @pallet.batch %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @pallet.status %>
+</p>
+
+<%= link_to 'Edit', edit_pallet_path(@pallet) %> |
+<%= link_to 'Back', pallets_path %>
+
+

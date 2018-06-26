@@ -1,14 +1,18 @@
+
 Rails.application.routes.draw do
-  resources :product_locations
+  resources :receptions do
+    resources :pallets, only: %i[create destroy update]
+  end
   resources :schedulings
   resources :clients
   resources :operations
   resources :doors
-  devise_for :users
-  
-  resources :products
-  get 'welcome/index'
   resources :locations
+  resources :products
+
+  devise_for :users
+  get 'welcome/index'
+
   #resources :levels
   #resources :slots
   #resources :passages

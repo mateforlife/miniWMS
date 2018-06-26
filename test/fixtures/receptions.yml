@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scheduling: one
+  document_number: MyString
+  origin_place: MyString
+  vehicle_patent: MyString
+  reference_text: MyString
+  comment: MyText
+  user: one
+
+two:
+  scheduling: two
+  document_number: MyString
+  origin_place: MyString
+  vehicle_patent: MyString
+  reference_text: MyString
+  comment: MyText
+  user: two
