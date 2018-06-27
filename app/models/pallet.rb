@@ -5,5 +5,4 @@ class Pallet < ApplicationRecord
   validates :pallet_number, uniqueness: true
 
   enum status: %i[available retained]
-
 end

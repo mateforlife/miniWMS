@@ -22,10 +22,10 @@
   <tbody>
     <% @pallets.each do |pallet| %>
       <tr>
-        <td><%= pallet.reception %></td>
+        <td><%= pallet.reception.id %></td>
         <td><%= pallet.pallet_number %></td>
         <td><%= pallet.product.code %></td>
-        <td><%= pallet.location %></td>
+        <td><%= pallet.location.location_full_name %></td>
         <td><%= pallet.origin_qty %></td>
         <td><%= pallet.reserved_qty %></td>
         <td><%= pallet.available_qty %></td>

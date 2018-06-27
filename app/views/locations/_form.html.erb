@@ -13,23 +13,22 @@
 
   <div class="field">
     <%= form.label "Pasillo" %>
-    <%= form.collection_select(:passage_id, Passage.all, :id, :name) %>
+    <%= form.select :passage, options_for_select(["A","B","C","D","E","F","G"]) %>
   </div>
 
   <div class="field">
-    <%= form.label :slot_id %>
-    <%= form.collection_select(:slot_id, Slot.all, :id, :number) %>
+    <%= form.label :slot %>
+    <%= form.select :slot, options_for_select((1..50)) %>
   </div>
 
   <div class="field">
-    <%= form.label "Nivel"%>
-    <%= form.collection_select(:level_id, Level.all, :id, :number) %>
+    <%= form.label "Nivel" %>
+    <%= form.select :level, options_for_select((1..6)) %>
   </div>
-
 
   <div class="field">
     <%= form.label "Slot para:"%>
-    <%= form.collection_select(:product_id, Product.all, :id, :code_description) %>
+    <%= form.collection_select(:product_id, Product.all, :id, :code_description, include_blank: true) %>
   </div>
 
   <div class="actions">

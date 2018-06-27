@@ -1,10 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: %i[show edit update destroy]
 
+
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.all.order('passage, slot, level ASC')
   end
 
   # GET /locations/1
@@ -28,7 +29,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
+        format.html { redirect_to locations_path, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.html { redirect_to locations_path, notice: 'Location was successfully updated.' }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit }
@@ -62,12 +63,12 @@ class LocationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_location
-      @location = Location.find(params[:id])
-    end
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def location_params
-      params.require(:location).permit(:passage_id, :slot_id, :level_id, :available, :product_id)
-    end
+
+  def set_location
+    @location = Location.find(params[:id])
+  end
+
+  def location_params
+    params.require(:location).permit(:passage, :slot, :level, :available, :product_id)
+  end
 end

@@ -1,21 +1,22 @@
 class Location < ApplicationRecord
-  belongs_to :passage
-  belongs_to :slot
-  belongs_to :level
-  belongs_to :product
+  belongs_to :product, required: false
   validate :unique_combination, on: :create
 
+  def set_pallet
+    Pallet.where('location_id = ? and available_qty > ?', location.id, 0)
+  end
+  
   def unique_combination
     errors.add(:passage_id, 'location with same combination of id') unless complete_location
   end
 
   def location_full_name
-    "#{passage.name} - #{slot.number} - #{level.number}"
+    "#{passage} - #{slot} - #{level}"
   end
 
   private
 
-    def complete_location
-      Location.where(passage_id: passage.id, slot_id: slot.id, level_id: level.id).empty?
-    end
+  def complete_location
+    Location.where(passage: passage, slot: slot, level: level).empty?
+  end
 end
