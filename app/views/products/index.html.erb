@@ -1,7 +1,14 @@
+
 <p id="notice"><%= notice %></p>
 
 <h1>Products</h1>
 
+<h3>Buscar por Ean</h3>
+<%= form_tag(products_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Buscar EAN" %>
+    <%= submit_tag "Buscar", :name => nil %>
+<% end %>
+</br>
 <table>
   <thead>
     <tr>

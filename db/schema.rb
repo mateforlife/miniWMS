@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_27_131447) do
+ActiveRecord::Schema.define(version: 2018_06_28_145656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2018_06_27_131447) do
     t.string "aux_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_products_on_client_id"
   end
 
   create_table "receptions", force: :cascade do |t|
@@ -126,6 +128,7 @@ ActiveRecord::Schema.define(version: 2018_06_27_131447) do
   add_foreign_key "pallets", "locations"
   add_foreign_key "pallets", "products"
   add_foreign_key "pallets", "receptions"
+  add_foreign_key "products", "clients"
   add_foreign_key "receptions", "schedulings"
   add_foreign_key "receptions", "users"
   add_foreign_key "schedulings", "clients"

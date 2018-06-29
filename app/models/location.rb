@@ -5,7 +5,7 @@ class Location < ApplicationRecord
   def set_pallet
     Pallet.where('location_id = ? and available_qty > ?', location.id, 0)
   end
-  
+
   def unique_combination
     errors.add(:passage_id, 'location with same combination of id') unless complete_location
   end

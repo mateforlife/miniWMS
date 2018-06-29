@@ -13,7 +13,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
       <tr>
         <td><%= @reception.scheduling.id %></td>
@@ -23,12 +22,13 @@
         <td><%= @reception.reference_text %></td>
         <td><%= @reception.comment %></td>
         <td><%= @reception.user.email %></td>
-        <td><%= link_to 'Edit', edit_reception_path(@reception) %></td>
-        <td><%= link_to 'Back', receptions_path %></td>
+        <td><%= link_to 'Atrás', receptions_path %></td>
+        <td></td>
       </tr>
   </tbody>
 </table>
 </br>
+
 <table>
   <thead>
     <tr>
@@ -44,7 +44,6 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @reception.pallets.each do |pallet| %>
       <tr>
@@ -62,4 +61,7 @@
   </tbody>
 </table>
 
-<%= render "pallets/form" %>
+<% if @scheduling.status == 'approved' || @scheduling.status == 'pending' %>
+  <%= render "pallets/form" %>
+  <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put %>
+<% end %>  

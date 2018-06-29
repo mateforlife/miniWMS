@@ -1,7 +1,5 @@
 class PalletsController < InheritedResources::Base
   before_action :set_reception , only: :create
-  before_action :storage_locations, only: :create
-  before_action :product_location, only: :create
   before_action :set_location, only: :create
   after_action :update_location_status, only: :create
 

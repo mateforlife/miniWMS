@@ -1,5 +1,5 @@
 class SchedulingsController < ApplicationController
-  before_action :set_scheduling, only: [:show, :edit, :update, :destroy]
+  before_action :set_scheduling, only: %i[show edit update destroy]
 
   # GET /schedulings
   # GET /schedulings.json
@@ -64,16 +64,18 @@ class SchedulingsController < ApplicationController
 
   private
 
-    def selected_date(symbol)
-      params[:search].present? && params[:search][symbol].present? ? params[:search][symbol].to_date : Time.now.to_date
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scheduling
-      @scheduling = Scheduling.find(params[:id])
-    end
+  def selected_date(symbol)
+    params[:search].present? && params[:search][symbol].present? ? params[:search][symbol].to_date : Time.now.to_date
+  end
+  # Use callbacks to share common setup or constraints between actions.
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def scheduling_params
-      params.require(:scheduling).permit(:user_id, :client_id, :operation_id, :observation, :pallets_qty, :date, :door_id, :status)
-    end
+  def set_scheduling
+    @scheduling = Scheduling.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def scheduling_params
+    params.require(:scheduling).permit(:user_id, :client_id, :operation_id, :observation, :pallets_qty, :date, :door_id, :status)
+  end
+
 end
