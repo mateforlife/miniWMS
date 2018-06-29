@@ -4,8 +4,8 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @ean13 = params[:search]
-    @products = params[:search].present? ? Product.where(ean13: @ean13) : Product.all
+    @search_params = params[:search]
+    @products = params[:search].present? ? Product.where(ean13: @search_params) : Product.all
   end
 
   # GET /products/1

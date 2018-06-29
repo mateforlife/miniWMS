@@ -65,7 +65,7 @@ class SchedulingsController < ApplicationController
   private
 
   def selected_date(symbol)
-    params[:search].present? && params[:search][symbol].present? ? params[:search][symbol].to_date : Time.now.to_date
+    params[:search] && params[:search][symbol] ? params[:search][symbol].to_date : Time.now.to_date
   end
   # Use callbacks to share common setup or constraints between actions.
 
