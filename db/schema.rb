@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_26_162757) do
+ActiveRecord::Schema.define(version: 2018_06_28_145656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,24 +27,15 @@ ActiveRecord::Schema.define(version: 2018_06_26_162757) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "levels", force: :cascade do |t|
-    t.integer "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "locations", force: :cascade do |t|
-    t.bigint "passage_id"
-    t.bigint "slot_id"
-    t.bigint "level_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "available", default: true
     t.bigint "product_id"
-    t.index ["level_id"], name: "index_locations_on_level_id"
-    t.index ["passage_id"], name: "index_locations_on_passage_id"
+    t.integer "slot"
+    t.integer "level"
+    t.string "passage"
     t.index ["product_id"], name: "index_locations_on_product_id"
-    t.index ["slot_id"], name: "index_locations_on_slot_id"
   end
 
   create_table "operations", force: :cascade do |t|
@@ -71,12 +62,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_162757) do
     t.index ["reception_id"], name: "index_pallets_on_reception_id"
   end
 
-  create_table "passages", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "code"
     t.string "description"
@@ -87,6 +72,8 @@ ActiveRecord::Schema.define(version: 2018_06_26_162757) do
     t.string "aux_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_products_on_client_id"
   end
 
   create_table "receptions", force: :cascade do |t|
@@ -120,12 +107,6 @@ ActiveRecord::Schema.define(version: 2018_06_26_162757) do
     t.index ["user_id"], name: "index_schedulings_on_user_id"
   end
 
-  create_table "slots", force: :cascade do |t|
-    t.integer "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -143,13 +124,11 @@ ActiveRecord::Schema.define(version: 2018_06_26_162757) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "locations", "levels"
-  add_foreign_key "locations", "passages"
   add_foreign_key "locations", "products"
-  add_foreign_key "locations", "slots"
   add_foreign_key "pallets", "locations"
   add_foreign_key "pallets", "products"
   add_foreign_key "pallets", "receptions"
+  add_foreign_key "products", "clients"
   add_foreign_key "receptions", "schedulings"
   add_foreign_key "receptions", "users"
   add_foreign_key "schedulings", "clients"

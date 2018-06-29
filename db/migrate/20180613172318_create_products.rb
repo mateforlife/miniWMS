@@ -8,7 +8,6 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :ean13
       t.string :dun14
       t.string :aux_code
-      t.references :location, foreign_key: true
 
       t.timestamps
     end

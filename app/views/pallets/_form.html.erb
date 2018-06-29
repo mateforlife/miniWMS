@@ -1,4 +1,6 @@
-<%= form_for([@reception, Pallet.new]) do |form| %>
+
+
+<%= form_for([@reception, Pallet.new], remote: true, html: { id:"pallets-form "}) do |form| %>
 
   <div class="field">
     <%= form.label :reception_id %>
@@ -12,12 +14,7 @@
 
   <div class="field">
     <%= form.label :product_id %>
-    <%= form.collection_select(:product_id, Product.all, :id, :code_description) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :location_id %>
-    <%= form.text_field :location_id %>
+    <%= form.collection_select(:product_id, Product.all, :id, :code_description, include_blank: true) %>
   </div>
 
   <div class="field">

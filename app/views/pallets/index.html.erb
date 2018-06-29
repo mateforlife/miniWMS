@@ -22,21 +22,22 @@
   <tbody>
     <% @pallets.each do |pallet| %>
       <tr>
-        <td><%= pallet.reception %></td>
+        <td><%= pallet.reception.id %></td>
         <td><%= pallet.pallet_number %></td>
         <td><%= pallet.product.code %></td>
-        <td><%= pallet.location %></td>
+        <td><%= pallet.location.location_full_name %></td>
         <td><%= pallet.origin_qty %></td>
         <td><%= pallet.reserved_qty %></td>
         <td><%= pallet.available_qty %></td>
         <td><%= pallet.exp_date %></td>
         <td><%= pallet.batch %></td>
         <td><%= pallet.status %></td>
+        <td><%= link_to 'Edit', edit_pallet_path(pallet) %></td>
+        <td><%= link_to 'Destroy', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Pallet', new_pallet_path %>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :receptions do
     resources :pallets, only: %i[create destroy update]
   end
+  resources :pallets
   resources :schedulings
   resources :clients
   resources :operations

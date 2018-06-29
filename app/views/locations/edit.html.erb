@@ -1,6 +1,31 @@
 <h1>Editing Location</h1>
 
-<%= render 'form', location: @location %>
+<%= form_with(model: @location, local: true) do |form| %>
 
-<%= link_to 'Show', @location %> |
+  <div class="field">
+    <%= form.label "Pasillo" %>
+    <%= form.text_field :passage, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slot %>
+    <%= form.text_field :slot, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Nivel" %>
+    <%= form.text_field :level, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Slot para:"%>
+    <%= form.collection_select(:product_id, Product.all, :id, :code_description, include_blank: true) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Crear Ubicación" %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @location %>
 <%= link_to 'Back', locations_path %>
