@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
   belongs_to :product, required: false
-  validate :unique_combination, on: :create
+  validate :unique_combination, on: %i[create update]
   validates_presence_of :passage, :slot, :level
 
   def set_pallet
@@ -8,7 +8,7 @@ class Location < ApplicationRecord
   end
 
   def unique_combination
-    errors.add(:passage_id, 'location with same combination of id') unless complete_location
+    errors.add(:passage, 'location with same combination of id') unless complete_location
   end
 
   def location_full_name

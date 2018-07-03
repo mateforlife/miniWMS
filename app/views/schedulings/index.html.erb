@@ -34,14 +34,17 @@
         <td><%= scheduling.date.strftime('%H:%M') %></td>
         <td><%= scheduling.door.number %></td>
         <td><%= scheduling.status %></td>
-        <% case scheduling.operation.name %>
-        <% when 'RECEPCION'%>
-          <td><%= link_to "Iniciar #{scheduling.operation.name}", new_reception_path(:reception => {scheduling_id: scheduling.id}) %></td>
-        <% when 'DESPACHO'%>
-          <!--<td><%= link_to "Iniciar #{scheduling.operation.name}", new_reception_path(:dispatch => {scheduling_id: scheduling.id}) %></td>-->
+        <% if scheduling.status == 'pending' %>
+          <% case scheduling.operation.name %>
+            <% when 'RECEPCION'%>
+              <td><%= link_to "Iniciar #{scheduling.operation.name}", new_reception_path(:reception => {scheduling_id: scheduling.id}) %></td>
+            <% when 'DESPACHO'%>
+              <!--<td><%= link_to "Iniciar #{scheduling.operation.name}", new_reception_path(:dispatch => {scheduling_id: scheduling.id}) %></td>-->
+            <td>-</td>
+          <% end %>
+          <td><%= link_to 'Editar', edit_scheduling_path(scheduling) %></td>
+          <td><%= link_to 'Eliminar', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-        <td><%= link_to 'Editar', edit_scheduling_path(scheduling) %></td>
-        <td><%= link_to 'Eliminar', scheduling, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
