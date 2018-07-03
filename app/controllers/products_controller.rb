@@ -5,7 +5,17 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @search_params = params[:search]
-    @products = params[:search].present? ? Product.where(ean13: @search_params) : Product.all
+    if params[:search].present?
+      if Product.where(ean13: @search_params).present?
+        @products = Product.where(ean13: @search_params)
+      elsif Product.where(dun14: @search_params).present?
+        @products = Product.where(dun14: @search_params)
+      elsif Product.where(aux_code: @search_params).present?
+        @products = Product.where(aux_code: @search_params)
+      end
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1
@@ -33,7 +43,7 @@ class ProductsController < ApplicationController
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity}
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end

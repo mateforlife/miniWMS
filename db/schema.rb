@@ -28,20 +28,20 @@ ActiveRecord::Schema.define(version: 2018_06_28_145656) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "available", default: true
-    t.bigint "product_id"
     t.integer "slot"
     t.integer "level"
+    t.boolean "available", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_id"
     t.string "passage"
     t.index ["product_id"], name: "index_locations_on_product_id"
   end
 
   create_table "operations", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
   end
 
   create_table "pallets", force: :cascade do |t|
@@ -98,9 +98,9 @@ ActiveRecord::Schema.define(version: 2018_06_28_145656) do
     t.integer "pallets_qty"
     t.datetime "date"
     t.bigint "door_id"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
     t.index ["client_id"], name: "index_schedulings_on_client_id"
     t.index ["door_id"], name: "index_schedulings_on_door_id"
     t.index ["operation_id"], name: "index_schedulings_on_operation_id"
