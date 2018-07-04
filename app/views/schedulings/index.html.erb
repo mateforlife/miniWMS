@@ -7,7 +7,7 @@
   <h2> <%= "Mostrando agendamientos para: #{@day.strftime("%d/%m/%Y")}" %> </h2>
 <% end %>
 <!---->
-
+<h2>Agendamientos: <%=@schedulings.count%></h2>
 <table>
   <thead>
     <tr>
@@ -52,4 +52,4 @@
 
 <br>
 
-<%= link_to 'Nuevo Agendamiento', new_scheduling_path %>
+<%= button_to 'Nuevo Agendamiento', new_scheduling_path, method: :get %>
