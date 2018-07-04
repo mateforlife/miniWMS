@@ -1,11 +1,11 @@
 class PalletsController < InheritedResources::Base
   before_action :set_reception, only: :create
   before_action :set_location, only: :create
-  after_action :update_location_status, only: :create
 
   def create
     @pallet = Pallet.new(pallet_params)
     if @pallet.save
+      @location.update(available: false)
       redirect_to @reception
     else
       render 'new'
@@ -14,13 +14,8 @@ class PalletsController < InheritedResources::Base
 
   private
 
-  def update_location_status
-    @location.update(available: false)
-    @location.save
-  end
-
   def storage_locations
-    Location.where('available = ? and level > ?', true, 1).order('passage, slot, level ASC')
+    Location.where('available = ? AND level > ?', true, 1).order('passage, slot, level ASC')
   end
 
   def product_location
