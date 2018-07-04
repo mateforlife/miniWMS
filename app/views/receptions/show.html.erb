@@ -27,8 +27,7 @@
       </tr>
   </tbody>
 </table>
-</br>
-
+<h2>Pallets recepcionados: <%= @reception.pallets.count %></h2>
 <table>
   <thead>
     <tr>
@@ -64,4 +63,4 @@
 <% if @scheduling.status == 'approved' || @scheduling.status == 'pending' %>
   <%= render "pallets/form" %>
   <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put %>
-<% end %>  
+<% end %>
