@@ -26,9 +26,7 @@
         <td><%= reception.reference_text %></td>
         <td><%= reception.comment %></td>
         <td><%= reception.user.email %></td>
-        <td><%= link_to 'Show', reception %></td>
-        <td><%= link_to 'Edit', edit_reception_path(reception) %></td>
-        <td><%= link_to 'Destroy', reception, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Iniciar/Ver detalle', reception, method: :get %></td>
       </tr>
     <% end %>
   </tbody>

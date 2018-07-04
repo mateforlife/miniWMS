@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all.order('passage, slot, level ASC')
+    @available_locations = Location.where(available: true).count
   end
 
   # GET /locations/1
