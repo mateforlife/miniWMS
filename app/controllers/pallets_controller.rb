@@ -1,5 +1,5 @@
 class PalletsController < InheritedResources::Base
-  before_action :set_reception , only: :create
+  before_action :set_reception, only: :create
   before_action :set_location, only: :create
   after_action :update_location_status, only: :create
 
@@ -16,6 +16,7 @@ class PalletsController < InheritedResources::Base
 
   def update_location_status
     @location.update(available: false)
+    @location.save
   end
 
   def storage_locations
