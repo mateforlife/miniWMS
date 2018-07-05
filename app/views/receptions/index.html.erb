@@ -1,11 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Receptions</h1>
+<%= form_for :search, method: :get do |f| %>
+  <%= f.date_field :day, value: Time.now %>
+  <%= f.submit 'Search' %> 
+<% end %>
 
 <table>
   <thead>
     <tr>
       <th>Scheduling</th>
+      <th>Creado</th>
       <th>Document number</th>
       <th>Origin place</th>
       <th>Vehicle patent</th>
@@ -20,6 +24,7 @@
     <% @receptions.each do |reception| %>
       <tr>
         <td><%= reception.scheduling.id %></td>
+        <td><%= reception.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= reception.document_number %></td>
         <td><%= reception.origin_place %></td>
         <td><%= reception.vehicle_patent %></td>
