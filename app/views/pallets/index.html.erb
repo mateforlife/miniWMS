@@ -3,8 +3,8 @@
 <h3>Buscar por Tarja</h3>
 
 <%= form_tag(pallets_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Buscar" %>
-    <%= submit_tag "Buscar", :name => nil %>
+  <%= text_field_tag :search, params[:search], placeholder: "Buscar" %>
+  <%= submit_tag "Buscar", :name => nil %>
 <% end %>
 
 <h1>Pallets</h1>
@@ -39,9 +39,6 @@
         <td><%= pallet.exp_date %></td>
         <td><%= pallet.batch %></td>
         <td><%= pallet.status %></td>
-        <td><%= link_to 'Edit', edit_pallet_path(pallet) %></td>
-        <td><%= link_to 'Destroy', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
       </tr>
     <% end %>
   </tbody>
