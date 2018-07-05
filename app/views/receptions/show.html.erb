@@ -27,18 +27,27 @@
       </tr>
   </tbody>
 </table>
+
 <h2>Pallets recepcionados: <%= @reception.pallets.count %></h2>
+
+<% if @scheduling.status == 'approved' || @scheduling.status == 'pending' %>
+  <%= render "pallets/form" %>
+  <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put %>
+<% end %>
+
+</br>
+
 <table>
   <thead>
     <tr>
-      <th>Pallet number</th>
-      <th>Product</th>
-      <th>Location</th>
-      <th>Origin qty</th>
-      <th>Reserved qty</th>
-      <th>Available qty</th>
-      <th>Exp date</th>
-      <th>Batch</th>
+      <th>Numero de Estiba</th>
+      <th>Producto Descripcion</th>
+      <th>Ubicación</th>
+      <th>Cantidad de Origen</th>
+      <th>Cantidad Reservada</th>
+      <th>Cantidad Disponible</th>
+      <th>Fecha de Vencimiento</th>
+      <th>Lote</th>
       <th>Status</th>
       <th colspan="3"></th>
     </tr>
@@ -59,8 +68,3 @@
     <% end %>
   </tbody>
 </table>
-
-<% if @scheduling.status == 'approved' || @scheduling.status == 'pending' %>
-  <%= render "pallets/form" %>
-  <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put %>
-<% end %>

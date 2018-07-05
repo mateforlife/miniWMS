@@ -1,6 +1,11 @@
 class PalletsController < InheritedResources::Base
   before_action :set_reception, only: :create
   before_action :set_location, only: :create
+  before_action :origin_qty_to_available_qty, only: :create
+
+  def index
+    @pallets = params[:search].present? ? Pallet.where(pallet_number: params[:search]) : Pallet.all
+  end
 
   def create
     @pallet = Pallet.new(pallet_params)
@@ -13,6 +18,11 @@ class PalletsController < InheritedResources::Base
   end
 
   private
+
+  def origin_qty_to_available_qty
+    params['pallet']['available_qty'] = params['pallet']['origin_qty']
+    params['pallet']['reserved_qty'] = 0
+  end
 
   def storage_locations
     Location.where('available = ? AND level > ?', true, 1).order('passage, slot, level ASC')
