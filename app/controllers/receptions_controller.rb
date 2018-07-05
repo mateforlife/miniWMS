@@ -2,6 +2,10 @@ class ReceptionsController < InheritedResources::Base
   before_action :set_reception, only: %i[show edit update destroy]
   before_action :set_scheduling, only: :show
 
+  def index
+    @receptions = Reception.all.order('updated_at ASC')
+  end
+
   private
 
   def set_reception

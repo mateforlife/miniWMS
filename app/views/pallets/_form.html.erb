@@ -8,41 +8,31 @@
   </div>
 
   <div class="field">
-    <%= form.label :pallet_number %>
+    <%= form.label 'Numero de Estiba' %>
     <%= form.text_field :pallet_number %>
   </div>
 
   <div class="field">
-    <%= form.label :product_id %>
+    <%= form.label 'Codigo de Producto' %>
     <%= form.collection_select(:product_id, Product.all, :id, :code_description, include_blank: true) %>
   </div>
 
   <div class="field">
-    <%= form.label :origin_qty %>
+    <%= form.label 'Cantidad recibida' %>
     <%= form.number_field :origin_qty %>
   </div>
 
   <div class="field">
-    <%= form.label :reserved_qty %>
-    <%= form.number_field :reserved_qty %>
-  </div>
-
-  <div class="field">
-    <%= form.label :available_qty %>
-    <%= form.number_field :available_qty %>
-  </div>
-
-  <div class="field">
-    <%= form.label :exp_date %>
+    <%= form.label 'Fecha de vencimiento' %>
     <%= form.date_select :exp_date %>
   </div>
 
   <div class="field">
-    <%= form.label :batch %>
+    <%= form.label 'Lote' %>
     <%= form.text_field :batch %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Crear Pallet' %>
   </div>
 <% end %>

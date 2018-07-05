@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pallet Assignments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pallet</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pallet_assignments.each do |pallet_assignment| %>
+      <tr>
+        <td><%= pallet_assignment.pallet %></td>
+        <td><%= pallet_assignment.location %></td>
+        <td><%= link_to 'Show', pallet_assignment %></td>
+        <td><%= link_to 'Edit', edit_pallet_assignment_path(pallet_assignment) %></td>
+        <td><%= link_to 'Destroy', pallet_assignment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pallet Assignment', new_pallet_assignment_path %>

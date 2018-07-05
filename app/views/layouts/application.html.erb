@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AlexSlap</title>
+    <title>SGO GOLDENFROST</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -14,6 +14,7 @@
     <% if user_signed_in? %>
       <%= link_to 'Agendamiento CD', schedulings_path %>
       <%= link_to 'Recepciones', receptions_path %>
+      <!--<%= link_to 'Asignacion de Pallets', new_pallet_assignment_path %>-->
       <%= link_to 'Pallets', pallets_path %>
       <%= link_to 'Productos', products_path %>
       <%= link_to 'Ubicaciones', locations_path %>
