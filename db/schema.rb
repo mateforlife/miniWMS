@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_191249) do
+ActiveRecord::Schema.define(version: 2018_07_05_194615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,6 @@ ActiveRecord::Schema.define(version: 2018_07_05_191249) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pallet_assignments", force: :cascade do |t|
-    t.bigint "pallet_id"
-    t.bigint "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_pallet_assignments_on_location_id"
-    t.index ["pallet_id"], name: "index_pallet_assignments_on_pallet_id"
   end
 
   create_table "pallets", force: :cascade do |t|
@@ -135,8 +126,6 @@ ActiveRecord::Schema.define(version: 2018_07_05_191249) do
   end
 
   add_foreign_key "locations", "products"
-  add_foreign_key "pallet_assignments", "locations"
-  add_foreign_key "pallet_assignments", "pallets"
   add_foreign_key "pallets", "locations"
   add_foreign_key "pallets", "products"
   add_foreign_key "pallets", "receptions"
