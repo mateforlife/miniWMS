@@ -6,7 +6,7 @@ class Pallet < ApplicationRecord
   validates_presence_of %i[reception_id pallet_number location_id product_id origin_qty], on: :create
   validate :dates, on: %i[create update]
 
-  enum status: %i[available retained]
+  enum status: %i[available damaged]
 
   def dates
     errors.add(:exp_date, 'Fecha de vencimiento no puede ser mayor a elaboración') if exp_date <= elab_date
