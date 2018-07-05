@@ -3,7 +3,12 @@ class ReceptionsController < InheritedResources::Base
   before_action :set_scheduling, only: :show
 
   def index
-    @receptions = Reception.all.order('updated_at ASC')
+    @day = selected_date(:day)
+    unless params[:search] == {"day"=>""}
+      @receptions = Reception.where('created_at BETWEEN ? AND ? ', @day.beginning_of_day, @day.end_of_day ).order('created_at DESC')
+    else
+      @receptions = Reception.where('created_at BETWEEN ? AND ? ', Time.now.beginning_of_day, Time.now.end_of_day ).order('created_at DESC')
+    end
   end
 
   private
@@ -16,8 +21,11 @@ class ReceptionsController < InheritedResources::Base
     @scheduling = Scheduling.find(@reception.scheduling_id)
   end
 
+  def selected_date(symbol)
+    params[:search] && params[:search][symbol] ? params[:search][symbol].to_date : Time.now.to_date
+  end
+
   def reception_params
     params.require(:reception).permit(:scheduling_id, :document_number, :origin_place, :vehicle_patent, :reference_text, :comment, :user_id)
   end
-
 end

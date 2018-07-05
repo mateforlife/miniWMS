@@ -54,9 +54,8 @@ class PalletsController < InheritedResources::Base
   end
 
   def pallet_params
-    if params['pallet']['pallet_number'].present?
-      params['pallet']['pallet_number'] = params['pallet']['pallet_number'].upcase
-    end  
+    pallet_number = params['pallet']['pallet_number']
+    if pallet_number.present? then params['pallet']['pallet_number'] = pallet_number.upcase end
     params['pallet']['location_id'] ||= @location.id if @location
     params.require(:pallet).permit(:reception_id, :pallet_number, :location_id, :origin_qty, :reserved_qty, :available_qty, :exp_date, :elab_date, :batch, :status, :product_id)
   end
