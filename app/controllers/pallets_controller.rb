@@ -1,7 +1,8 @@
 class PalletsController < InheritedResources::Base
-  before_action :set_reception, only: :create
+  before_action :set_pallet, only: %i[show edit update destroy]
+  before_action :set_reception, only: %i[create update]
   before_action :set_location, only: :create
-  before_action :origin_qty_to_available_qty, only: :create
+  before_action :origin_qty_to_available_qty, only: %i[create update]
 
   def index
     @pallets = params[:search].present? ? Pallet.where(pallet_number: params[:search]) : Pallet.all
@@ -17,7 +18,19 @@ class PalletsController < InheritedResources::Base
     end
   end
 
+  def update
+    if @pallet.update(pallet_params)
+      redirect_to @reception
+    else
+      render 'new'
+    end
+  end
+
   private
+
+  def set_pallet
+    @pallet = Pallet.find(params[:id])
+  end
 
   def origin_qty_to_available_qty
     params['pallet']['available_qty'] = params['pallet']['origin_qty']
@@ -37,7 +50,7 @@ class PalletsController < InheritedResources::Base
   end
 
   def set_reception
-    @reception = Reception.find(params[:reception_id])
+    @reception = @pallet.nil? ? Reception.find(params[:reception_id]) : Reception.find(@pallet.reception_id)
   end
 
   def pallet_params
