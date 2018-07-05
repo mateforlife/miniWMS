@@ -40,8 +40,9 @@
 <table>
   <thead>
     <tr>
-      <th>Numero de Estiba</th>
-      <th>Producto Descripcion</th>
+      <th>Número de Estiba</th>
+      <th>Código</th>
+      <th>PDescripcion</th>
       <th>Ubicación</th>
       <th>Cantidad de Origen</th>
       <th>Cantidad Reservada</th>
@@ -57,7 +58,8 @@
     <% @reception.pallets.each do |pallet| %>
       <tr>
         <td><%= pallet.pallet_number %></td>
-        <td><%= pallet.product.code_description %></td>
+        <td><%= pallet.product.code %></td>
+        <td><%= pallet.product.description %></td>
         <td><%= pallet.location.location_full_name %></td>
         <td><%= pallet.origin_qty %></td>
         <td><%= pallet.reserved_qty %></td>

@@ -1,15 +1,8 @@
-
-
 <%= form_for([@reception, Pallet.new], remote: true, html: { id:"pallets-form "}) do |form| %>
 
   <div class="field">
     <%= form.label :reception_id %>
     <%= form.collection_select(:reception_id, [@reception], :id, :document_number) %>
-  </div>
-
-  <div class="field">
-    <%= form.label 'Numero de Estiba' %>
-    <%= form.text_field :pallet_number %>
   </div>
 
   <div class="field">
@@ -37,7 +30,18 @@
     <%= form.text_field :batch %>
   </div>
 
+  <div class="field">
+    <%= form.label 'Estado de la carga' %>
+    <%= form.select :status, options_for_select([["disponible", "available"], ["dañado", "damaged"]]) %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Numero de Estiba' %>
+    <%= form.text_field :pallet_number %>
+  </div>
+
   <div class="actions">
     <%= form.submit 'Crear Pallet' %>
   </div>
+  </br>
 <% end %>
