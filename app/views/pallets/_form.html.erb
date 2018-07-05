@@ -23,7 +23,12 @@
   </div>
 
   <div class="field">
-    <%= form.label 'Fecha de vencimiento' %>
+    <%= form.label 'Fecha de Elaboración' %>
+    <%= form.date_select :elab_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Fecha de Vencimiento' %>
     <%= form.date_select :exp_date %>
   </div>
 
