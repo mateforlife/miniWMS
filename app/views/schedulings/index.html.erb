@@ -4,7 +4,7 @@
 <%= form_for :search, method: :get do |f| %>
   <%= f.date_field :day, value: @start %>
   <%= f.submit 'Search' %> 
-  <h2> <%= "Mostrando agendamientos para: #{@day.strftime("%d/%m/%Y")}" %> </h2>
+  <h2> <%= "Mostrando agendamientos para: #{@day}" %> </h2>
 <% end %>
 <!---->
 <h2>Agendamientos: <%=@schedulings.count%></h2>

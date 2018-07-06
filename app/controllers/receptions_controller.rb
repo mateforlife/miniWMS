@@ -4,10 +4,12 @@ class ReceptionsController < InheritedResources::Base
 
   def index
     @day = selected_date(:day)
-    unless params[:search] == {"day"=>""}
-      @receptions = Reception.where('created_at BETWEEN ? AND ? ', @day.beginning_of_day, @day.end_of_day ).order('created_at DESC')
-    else
+    if @day.nil?
       @receptions = Reception.where('created_at BETWEEN ? AND ? ', Time.now.beginning_of_day, Time.now.end_of_day ).order('created_at DESC')
+      @day = Time.now.strftime("%d/%m/%Y")
+    else
+      @receptions = Reception.where('created_at BETWEEN ? AND ? ', @day.beginning_of_day, @day.end_of_day ).order('created_at DESC')
+      @day = @day.strftime("%d/%m/%Y")
     end
   end
 
