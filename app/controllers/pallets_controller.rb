@@ -1,6 +1,6 @@
 class PalletsController < InheritedResources::Base
   before_action :set_pallet, only: %i[show edit update destroy]
-  before_action :set_reception, only: %i[create update]
+  before_action :set_reception, only: %i[create update destroy]
   before_action :set_location, only: :create
   before_action :origin_qty_to_available_qty, only: %i[create update]
 
@@ -26,7 +26,21 @@ class PalletsController < InheritedResources::Base
     end
   end
 
+  def destroy
+    @pallet.destroy
+    update_location_status
+    respond_to do |format|
+      format.html { redirect_to @reception, notice: 'Pallet Eliminado' }
+      format.json { head :no_content }
+    end
+  end
+
   private
+
+  def update_location_status
+    @location = Location.find(@pallet.location_id)
+    @location.update(available: true)
+  end
 
   def set_pallet
     @pallet = Pallet.find(params[:id])
