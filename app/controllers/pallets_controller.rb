@@ -1,6 +1,6 @@
 class PalletsController < InheritedResources::Base
+  before_action :set_reception, only: %i[show create update destroy]
   before_action :set_pallet, only: %i[show edit update destroy]
-  before_action :set_reception, only: %i[create update destroy]
   before_action :set_location, only: :create
   before_action :origin_qty_to_available_qty, only: %i[create update]
 
