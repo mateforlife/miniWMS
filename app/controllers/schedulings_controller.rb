@@ -5,7 +5,13 @@ class SchedulingsController < ApplicationController
   # GET /schedulings.json
   def index
     @day = selected_date(:day)
-    @schedulings = params[:search].present? ? Scheduling.where("status <> ? AND date BETWEEN ? AND ? ",2 , @day.beginning_of_day, @day.end_of_day ).order("date ASC") : Scheduling.where("status <> ? AND date BETWEEN ? AND ? ", 2, Time.now.beginning_of_day, Time.now.end_of_day ).order("date ASC")
+    if @day.nil?
+      @schedulings = Scheduling.where("status <> ? AND date BETWEEN ? AND ? ", 2, Time.now.beginning_of_day, Time.now.end_of_day ).order("date ASC")
+      @day = Time.now.strftime("%d/%m/%Y")
+    else
+      @schedulings = Scheduling.where("status <> ? AND date BETWEEN ? AND ? ",2 , @day.beginning_of_day, @day.end_of_day ).order("date ASC")
+      @day = @day.strftime("%d/%m/%Y")
+    end
   end
 
   # GET /schedulings/1
@@ -22,6 +28,13 @@ class SchedulingsController < ApplicationController
   def edit
   end
 
+  def selected_search_time
+
+  end
+  
+  def default_search_time
+
+  end  
   # POST /schedulings
   # POST /schedulings.json
   def create
