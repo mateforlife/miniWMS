@@ -19,7 +19,7 @@ class ReceptionsController < InheritedResources::Base
     @reception = Reception.find(params[:id])
   end
 
-  def set_scheduling 
+  def set_scheduling
     @scheduling = Scheduling.find(@reception.scheduling_id)
   end
 

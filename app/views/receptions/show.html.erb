@@ -41,7 +41,7 @@
     <tr>
       <th>Número de Estiba</th>
       <th>Código</th>
-      <th>PDescripcion</th>
+      <th>Descripcion</th>
       <th>Ubicación</th>
       <th>Cantidad de Origen</th>
       <th>Cantidad Reservada</th>
@@ -67,8 +67,10 @@
         <td><%= pallet.exp_date %></td>
         <td><%= pallet.batch %></td>
         <td><%= pallet.status %></td>
-        <td><%= link_to 'Editar', edit_pallet_path(pallet) %></td>
-        <td><%= link_to 'Eliminar', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% unless @scheduling.status == 'finished' || @scheduling.status == 'canceled' %>
+          <td><%= link_to 'Editar', edit_pallet_path(pallet) %></td>
+          <td><%= link_to 'Eliminar', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
