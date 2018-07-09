@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pallet_locations
   resources :pallet_assignments
   resources :receptions do
     resources :pallets, only: %i[create destroy update]

@@ -1,0 +1,27 @@
+<%= form_with(model: pallet_location, local: true) do |form| %>
+  <% if pallet_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pallet_location.errors.count, "error") %> prohibited this pallet_location from being saved:</h2>
+
+      <ul>
+      <% pallet_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :pallet_id %>
+    <%= form.text_field :pallet_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.text_field :location_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
