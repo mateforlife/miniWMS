@@ -14,8 +14,8 @@
   <tbody>
     <% @pallet_locations.each do |pallet_location| %>
       <tr>
-        <td><%= pallet_location.pallet %></td>
-        <td><%= pallet_location.location %></td>
+        <td><%= pallet_location.pallet.pallet_number %></td>
+        <td><%= pallet_location.location.location_full_name %></td>
         <td><%= link_to 'Show', pallet_location %></td>
         <td><%= link_to 'Edit', edit_pallet_location_path(pallet_location) %></td>
         <td><%= link_to 'Destroy', pallet_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>

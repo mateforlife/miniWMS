@@ -35,7 +35,7 @@
         <td><%= pallet.pallet_number %></td>
         <td><%= pallet.product.code %></td>
         <td><%= pallet.product.description %></td>
-        <td><%= pallet.location.location_full_name %></td>
+        <td><%= pallet.pallet_locations.last.location.location_full_name %></td>
         <td><%= pallet.origin_qty %></td>
         <td><%= pallet.reserved_qty %></td>
         <td><%= pallet.available_qty %></td>

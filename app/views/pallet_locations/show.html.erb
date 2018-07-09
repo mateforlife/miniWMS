@@ -2,12 +2,12 @@
 
 <p>
   <strong>Pallet:</strong>
-  <%= @pallet_location.pallet %>
+  <%= @pallet_location.pallet.pallet_number%>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @pallet_location.location %>
+  <%= @pallet_location.location.location_full_name %>
 </p>
 
 <%= link_to 'Edit', edit_pallet_location_path(@pallet_location) %> |
