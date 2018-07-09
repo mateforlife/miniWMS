@@ -1,10 +1,9 @@
 class PalletLocationsController < InheritedResources::Base
 
-  before_action :set_available_locations, only: :new
+  before_action :set_available_locations, only: [:new, :create]
   before_action :find_pallet_number, only: :create
   before_action :set_last_location, only: :create
   before_action :set_new_location, only: :create
-
 
   def create
     @pallet_location = PalletLocation.new(pallet_location_params)
@@ -20,8 +19,11 @@ class PalletLocationsController < InheritedResources::Base
 
   def find_pallet_number
     pallet = Pallet.find_by(pallet_number: params['pallet_location']['pallet_id'])
-    @pallet_number = pallet.nil? ? nil : pallet
-    params['pallet_location']['pallet_id'] = @pallet_number.id
+    if pallet.nil?
+      params['pallet_location']['pallet_id'] = nil
+    else
+      params['pallet_location']['pallet_id'] = pallet.id
+    end
   end
 
   def update_locations_status
