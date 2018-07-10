@@ -1,6 +1,6 @@
 class PalletsController < InheritedResources::Base
-  before_action :set_reception, only: %i[show create update destroy]
   before_action :set_pallet, only: %i[show edit update destroy]
+  before_action :set_reception, only: %i[show create update destroy]
   before_action :set_location, only: :create
   before_action :origin_qty_to_available_qty, only: %i[create update]
 
@@ -60,7 +60,7 @@ class PalletsController < InheritedResources::Base
   end
 
   def set_reception
-    @reception = @pallet.nil? ? Reception.find(params[:reception_id]) : Reception.find(@pallet.reception_id)
+    @reception = @pallet.nil? ? Reception.find(params['pallet']['reception_id']) : Reception.find(@pallet.reception_id)
   end
 
   def pallet_params

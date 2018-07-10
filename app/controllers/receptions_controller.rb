@@ -1,6 +1,6 @@
 class ReceptionsController < InheritedResources::Base
   before_action :set_reception, only: %i[show edit update destroy]
-  before_action :set_scheduling, only: :show
+  before_action :set_scheduling, only: %i[show create]
 
   def index
     @day = selected_date(:day)
@@ -13,6 +13,16 @@ class ReceptionsController < InheritedResources::Base
     end
   end
 
+  def create
+    @reception = Reception.new(reception_params)
+    if @reception.save
+      @scheduling.update(status: 'in_process')
+      redirect_to @reception
+    else
+      render 'new'
+    end
+  end
+
   private
 
   def set_reception
@@ -20,7 +30,11 @@ class ReceptionsController < InheritedResources::Base
   end
 
   def set_scheduling
-    @scheduling = Scheduling.find(@reception.scheduling_id)
+    if @reception.nil?
+      @scheduling = Scheduling.find(params['reception']['scheduling_id'])
+    else
+      @scheduling = Scheduling.find(@reception.scheduling_id)
+    end
   end
 
   def selected_date(symbol)

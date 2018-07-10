@@ -6,12 +6,10 @@ class Scheduling < ApplicationRecord
   validates_presence_of %i[client_id user_id operation_id observation pallets_qty date door_id], on: :create
   validate :past_date, on: :create
 
-  enum status: %i[pending approved canceled finished]
+  enum status: %i[pending approved canceled finished in_process]
 
   def past_date
     errors.add(:date, 'No es posible agendar al pasado') if date.to_s < Time.now.to_s
   end
-
-
 
 end
