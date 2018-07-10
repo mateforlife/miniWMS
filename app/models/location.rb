@@ -1,4 +1,5 @@
 class Location < ApplicationRecord
+  has_many :pallet_locations
   has_many :pallets, through: :pallet_locations
   belongs_to :product, required: false
   validate :unique_combination, on: :create

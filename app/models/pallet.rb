@@ -1,5 +1,4 @@
 class Pallet < ApplicationRecord
-
   has_many :pallet_locations
   has_many :locations, through: :pallet_locations
   belongs_to :reception
