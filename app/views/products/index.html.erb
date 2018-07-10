@@ -5,8 +5,8 @@
 <h3>Buscar por Codigo de barra</h3>
 
 <%= form_tag(products_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Buscar" %>
-    <%= submit_tag "Buscar", :name => nil %>
+  <%= text_field_tag :search, params[:search], placeholder: "Buscar" %>
+  <%= submit_tag "Buscar", :name => nil %>
 <% end %>
 
 </br>
@@ -22,6 +22,8 @@
       <th>Ean13</th>
       <th>Dun14</th>
       <th>Aux code</th>
+      <th>Base</th>
+      <th>Alto</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,6 +38,8 @@
         <td><%= product.ean13 %></td>
         <td><%= product.dun14 %></td>
         <td><%= product.aux_code %></td>
+        <td><%= product.layer %></td>
+        <td><%= product.layer_qty %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <!--<td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
