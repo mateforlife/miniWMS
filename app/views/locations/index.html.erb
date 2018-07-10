@@ -25,7 +25,7 @@
         <td><%= location.available %></td>
         <td><%= location.try(:product) ? location.product.code : 'ninguno' %></td>
         <% if location.available == false %>
-          <td><%= location.try(:pallet_locations).last ? location.pallet_locations.last.pallet.product.code_description : 'ninguno' %></td>
+          <td><%= location.try(:pallet_locations).last ? location.pallet_locations.last.pallet.product.code_description : 'bloqueada' %></td>
         <% else %>
           <td>ninguno</td>
         <% end %>
