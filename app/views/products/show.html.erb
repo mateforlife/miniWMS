@@ -35,6 +35,16 @@
   <%= @product.aux_code %>
 </p>
 
+<p>
+  <strong>Base:</strong>
+  <%= @product.layer %>
+</p>
+
+<p>
+  <strong>Alto</strong>
+  <%= @product.layer_qty %>
+</p>
+
 <div class="field">
   <strong>Ubicaciones asignadas:</strong>
   <% @product.locations.each do |location| %>
