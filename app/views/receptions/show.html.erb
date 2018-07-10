@@ -32,7 +32,7 @@
 
 <% if @scheduling.status == 'approved' || @scheduling.status == 'pending' %>
   <%= render "pallets/form" %>
-  <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put %>
+  <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put, data: { confirm: 'Esta seguro de finalizar??' } %>
 <% end %>
 </br>
 
