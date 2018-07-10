@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_194615) do
+ActiveRecord::Schema.define(version: 2018_07_09_013807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,18 @@ ActiveRecord::Schema.define(version: 2018_07_05_194615) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pallet_locations", force: :cascade do |t|
+    t.bigint "pallet_id"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_pallet_locations_on_location_id"
+    t.index ["pallet_id"], name: "index_pallet_locations_on_pallet_id"
+  end
+
   create_table "pallets", force: :cascade do |t|
     t.bigint "reception_id"
     t.string "pallet_number"
-    t.bigint "location_id"
     t.integer "origin_qty"
     t.integer "reserved_qty"
     t.integer "available_qty"
@@ -58,7 +66,6 @@ ActiveRecord::Schema.define(version: 2018_07_05_194615) do
     t.datetime "updated_at", null: false
     t.bigint "product_id"
     t.date "elab_date"
-    t.index ["location_id"], name: "index_pallets_on_location_id"
     t.index ["product_id"], name: "index_pallets_on_product_id"
     t.index ["reception_id"], name: "index_pallets_on_reception_id"
   end
@@ -126,7 +133,8 @@ ActiveRecord::Schema.define(version: 2018_07_05_194615) do
   end
 
   add_foreign_key "locations", "products"
-  add_foreign_key "pallets", "locations"
+  add_foreign_key "pallet_locations", "locations"
+  add_foreign_key "pallet_locations", "pallets"
   add_foreign_key "pallets", "products"
   add_foreign_key "pallets", "receptions"
   add_foreign_key "products", "clients"

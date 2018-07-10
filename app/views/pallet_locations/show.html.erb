@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pallet:</strong>
+  <%= @pallet_location.pallet.pallet_number%>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @pallet_location.location.location_full_name %>
+</p>
+
+<%= link_to 'Edit', edit_pallet_location_path(@pallet_location) %> |
+<%= link_to 'Back', pallet_locations_path %>

@@ -11,6 +11,7 @@ class PalletsController < InheritedResources::Base
   def create
     @pallet = Pallet.new(pallet_params)
     if @pallet.save
+      @pallet.pallet_locations.create(location_id: @location.id)
       @location.update(available: false)
       redirect_to @reception
     else
@@ -36,11 +37,6 @@ class PalletsController < InheritedResources::Base
   end
 
   private
-
-  def update_location_status
-    @location = Location.find(@pallet.location_id)
-    @location.update(available: true)
-  end
 
   def set_pallet
     @pallet = Pallet.find(params[:id])
@@ -70,7 +66,6 @@ class PalletsController < InheritedResources::Base
   def pallet_params
     pallet_number = params['pallet']['pallet_number']
     if pallet_number.present? then params['pallet']['pallet_number'] = pallet_number.upcase end
-    params['pallet']['location_id'] ||= @location.id if @location
-    params.require(:pallet).permit(:reception_id, :pallet_number, :location_id, :origin_qty, :reserved_qty, :available_qty, :exp_date, :elab_date, :batch, :status, :product_id)
+    params.require(:pallet).permit(:reception_id, :pallet_number, :origin_qty, :reserved_qty, :available_qty, :exp_date, :elab_date, :batch, :status, :product_id)
   end
 end

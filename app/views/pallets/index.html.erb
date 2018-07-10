@@ -31,11 +31,15 @@
   <tbody>
     <% @pallets.each do |pallet| %>
       <tr>
-        <td><%= pallet.reception.id %></td>
+        <td><%= pallet.id %></td>
         <td><%= pallet.pallet_number %></td>
         <td><%= pallet.product.code %></td>
         <td><%= pallet.product.description %></td>
-        <td><%= pallet.location.location_full_name %></td>
+<<<<<<< HEAD
+        <td><%= pallet.pallet_locations.last.location.location_full_name %></td>
+=======
+        <td><%= pallet.location.id %></td>
+>>>>>>> develop
         <td><%= pallet.origin_qty %></td>
         <td><%= pallet.reserved_qty %></td>
         <td><%= pallet.available_qty %></td>
