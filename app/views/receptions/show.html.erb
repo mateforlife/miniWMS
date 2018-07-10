@@ -30,7 +30,7 @@
 
 <h2>Pallets recepcionados: <%= @reception.pallets.count %></h2>
 
-<% if @scheduling.status == 'approved' || @scheduling.status == 'pending' %>
+<% if @scheduling.status == 'approved' || @scheduling.status == 'pending'|| @scheduling.status == 'in_process' %>
   <%= render "pallets/form" %>
   <%= button_to 'Finalizar Recepcion', scheduling_path(@scheduling, scheduling: {status: 'finished'}), method: :put, data: { confirm: 'Esta seguro de finalizar??' } %>
 <% end %>
