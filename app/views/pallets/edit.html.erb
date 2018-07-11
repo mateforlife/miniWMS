@@ -2,10 +2,10 @@
 <%= form_with(model: @pallet, local: true) do |form| %>
   <% if @pallet.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(pallet.errors.count, "error") %> prohibited this pallet from being saved:</h2>
+      <h2><%= pluralize(@pallet.errors.count, "error") %> prohibited this pallet from being saved:</h2>
 
       <ul>
-      <% reception.errors.full_messages.each do |message| %>
+      <% @pallet.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -15,6 +15,11 @@
   <div class="field">
     <%= form.label 'Cantidad recibida' %>
     <%= form.number_field :origin_qty %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Fecha de elaboración' %>
+    <%= form.date_select :elab_date %>
   </div>
 
   <div class="field">

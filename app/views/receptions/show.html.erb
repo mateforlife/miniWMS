@@ -69,7 +69,6 @@
         <td><%= pallet.status %></td>
         <% unless @scheduling.status == 'finished' || @scheduling.status == 'canceled' %>
           <td><%= link_to 'Editar', edit_pallet_path(pallet) %></td>
-          <td><%= link_to 'Eliminar', pallet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

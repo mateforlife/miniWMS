@@ -13,7 +13,7 @@ class PalletsController < InheritedResources::Base
     if @pallet.save
       @pallet.pallet_locations.create(location_id: @location.id)
       @location.update(available: false)
-      redirect_to @reception
+      redirect_to @reception, notice: 'Pallet ingresado exitosamente'
     else
       render 'new'
     end
@@ -23,7 +23,7 @@ class PalletsController < InheritedResources::Base
     if @pallet.update(pallet_params)
       redirect_to @reception
     else
-      render 'new'
+      render 'edit'
     end
   end
 
