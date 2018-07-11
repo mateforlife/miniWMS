@@ -1,5 +1,6 @@
 <%= form_for([@reception, Pallet.new], remote: true, html: { id:"pallets-form "}) do |form| %>
 
+
   <div class="field">
     <%= form.label :reception_id %>
     <%= form.collection_select(:reception_id, [@reception], :id, :document_number) %>

@@ -17,7 +17,7 @@ class ReceptionsController < InheritedResources::Base
     @reception = Reception.new(reception_params)
     if @reception.save
       @scheduling.update(status: 'in_process')
-      redirect_to @reception
+      redirect_to @reception, notice: 'Recepción creada, proceda a ingresar pallets'
     else
       render 'new'
     end

@@ -42,7 +42,7 @@ class SchedulingsController < ApplicationController
 
     respond_to do |format|
       if @scheduling.save
-        format.html { redirect_to schedulings_path, notice: 'Scheduling was successfully created.' }
+        format.html { redirect_to schedulings_path, notice: 'Agendamiento ingresado exitosamente' }
         format.json { render :show, status: :created, location: @scheduling }
       else
         format.html { render :new }
